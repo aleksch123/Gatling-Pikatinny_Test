@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+import "Date.proto";
+import "Time.proto";
+
+message DateTime
+{
+  Date date = 1;
+  Time time = 2;
+}
+

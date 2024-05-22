@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+enum OrderAction {
+  NO_ACTION = 0;
+  CREATE = 1;
+  MODIFY = 2;
+  CANCEL = 3;
+}

@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package dominvest.backend.core.model;
+option java_multiple_files = true;
+
+
+import "Decimal.proto";
+import "Position.proto";
+import "TransactionType.proto";
+import "ErrorCode.proto";
+import "Order.proto";
+import "Commission.proto";
+import "Date.proto";
+import "DateTime.proto";
+import "Trade.proto";
+import "Exchange.proto";
+
+message CommissionRequest {
+    string requestId = 1;
+    Order order = 2;
+}
+
+message CommissionResponse {
+    ErrorCode error = 1;
+    Commission commissionBroker = 2;
+    Commission commissionExchange = 3;
+    string bankingServiceLogEntryId = 4;
+}
+message ClientPortfolioRequest {
+    string requestId = 1;
+    string clientId = 2;
+    string pactId = 3;
+}
+message ClientPortfolioResponse {
+    ErrorCode error = 1;
+    repeated Position Position = 2;
+}
+message LimitsChangeRequest {
+    string requestId = 1; // id запроса
+    string clientId = 2; // id клиента в бэк-офисе
+    string securityId = 3; // id бумаги как <id бумаги в бэк-офисе>.<биржа>.<борда>
+    Decimal qty = 4; // количество(сумма)
+    string pactId = 5; // id брокерского договора
+    Date planDate = 6; // плановая дата движения средств
+    string operationId = 7; //id неторговой операции из бэк-офиса для контроля ошибочных блокировок
+    string currency = 8; //код валюты iso4217
+}
+message LimitsChangeResponse {
+    ErrorCode error = 1;
+    string requestId = 2; // id запроса
+}
+message Split {//параметры для сплита
+    Decimal prevQty = 1; //кол-во до сплита
+    Decimal prevPrice = 2; //цена до сплита
+    Decimal splitQty = 3; //цена до сплита
+    Decimal splitPrice = 4; //цена до сплита
+}
+message TransactionCreateRequest {
+    string requestId = 1; //id запроса
+    string clientId = 2; //id клиента в бэк-офисе
+    txn.TransactionType transactionType = 3; //тип операции
+    string currency = 4; //валюта в iso4217
+    Decimal qty = 5; //количество(сумма)
+    Split split = 6; //параметры сплита
+    string securityId = 7; //id бумаги как <id бумаги в бэк-офисе>.<биржа>.<борда>
+    string idempotencyKey = 9;
+    string pactId = 10; //id брокерского договора
+    DateTime operationDate = 11; //дата и время операции
+    string operationId = 12; // id неторговой операции из бэк-офиса для контроля ошибочных блокировок
+    string debitAccount = 13; // Номер счета списания
+    string creditAccount = 14; // Номер счета зачисления
+    string operationNumber = 15; // Номер операции
+}
+message TransactionCreateResponse {
+    ErrorCode error = 1;
+    string requestId = 2; // id запроса
+}
+message PaymentDeclineRequest {
+    string requestId = 1; //id запроса
+    string clientId = 2; //id клиента в бэк-офисе
+    Decimal amount = 3; // сумма перевода
+    string currency = 4; //валюта в iso4217
+    string operationId = 5; // id неторговой операции из бэк-офиса для контроля ошибочных блокировок
+    string operationNumber = 6; // Номер операции
+    bool isDeposit = 7; // true — ввод денежных средствб false — вывод денежных средств
+}
+message PaymentDeclineResponse {
+    ErrorCode error = 1;
+    string requestId = 2; // id запроса
+}
+
+message TransactionByOrderIdRequest {
+    repeated uint64 orderId = 1; // массив id заявок
+}
+
+message TransactionByOrderIdResponse {
+    ErrorCode error = 1;
+    repeated Transaction transaction = 2; // Найденные транзакции
+}
+
+message Transaction {
+    uint64 id = 1;        // id записи из таблицы транзакций
+    DateTime transactionDateTime = 2; // Дата и время операции (из колонок date, time)
+    txn.TransactionType transactionType = 3; // Значение из колонки type
+    string clientId = 4; //
+    string transactionId = 5; //
+    string securityId = 6; // id инструмента
+    Exchange exchange = 7; // Биржа, например, MOEX
+    string board = 8; // Борда биржи, например TQOB
+    string ticker = 9; // Тикер
+    uint64 tradeOrderId = 10;
+    Decimal qtyLots = 11; // Кол-во лотов из колонки qty_lots
+    DateTime createdAt = 12; // Дата и время создания записи (из колонки created_at)
+}
+
+
+service PortfolioService {
+    rpc createOperation (TransactionCreateRequest) returns (TransactionCreateResponse);
+
+}

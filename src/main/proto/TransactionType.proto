@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package dominvest.backend.core.model.txn;
+
+enum TransactionType {
+  NONE = 0;
+  BUY = 1; //не используется бэк-офисом
+  SELL = 2; //не используется бэк-офисом
+  TAX = 3;
+  TOPUP = 4;
+  WITHDRAW = 5;
+  COUPON = 6;
+  DIVIDENDS = 7;
+  BROKERCOMMISSION = 8; //не используется бэк-офисом
+  EXCHANGECOMMISSION = 9; //не используется бэк-офисом
+  REPAYMENT = 10;
+  AMORTIZATION = 11;
+  SPLIT = 12;
+  OFFER = 13;
+  DEPOCOMMISSION = 14;
+  TAXRETURN = 15;
+}

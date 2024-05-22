@@ -1,0 +1,39 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+import "Decimal.proto";
+import "DateTime.proto";
+import "Date.proto";
+import "Side.proto";
+import "OrderStatus.proto";
+import "OrderType.proto";
+import "OrderFailReason.proto";
+import "OrderAction.proto";
+import "Exchange.proto";
+
+message Order {
+    DateTime createDateTime = 1; // Дата и время создания заявки. По факту сейчас передается дата и время создания записи в базе OMS.oms_order
+    DateTime changeDateTime = 2; // Дата и время изменения заявки. Может заполняться так же createDateTime или не заполняться
+    string clientId = 3; // сквозной id клиента по всем БД ДОМ.Инвест
+    string ticker = 4; // Тикер
+    string securityId = 5; // id инструмента. Обычно строка из 3-х частей через точку: id инструмента, id борды, id биржи. Для не биржевых инструментов без режима торгов. Для валют просто RUB, EUR, USD
+    OrderType type = 6; // Тип заявки (по справочнику), строка
+    OrderAction action = 7; // При создании заявки ставится CREATE, при отмене заявки CANCEL
+    OrderStatus status = 8; // Статус заявки (по справочнику)
+    OrderFailReason failReason = 9; // Причина отклонения заявки (по справочнику)
+    string failText = 10; // Текст, причина отклонения заявки, например order is not accepted in this trading session
+    Side side = 11; // Заявка на покупку или продажу buy/sell
+    Decimal lotSize = 12; // Размер лота
+    Decimal lotQty = 13; // Кол-во лотов
+    Decimal filledQty = 14; // Уже купленное/проданное кол-во лотов, если заявка исполняется частями
+    Decimal price = 15; // Цена за ед. Когда отправляется уже одобренная заявка в FixGate - указывается только для заявок с типами limit, gtd, limitLoss, limitProfit. Для рыночных заявок не указывается
+    Decimal triggerPrice = 16; // Граничная цена (применяется для заявок limitLoss, limitProfit, marketLoss, marketProfit). Цена, при которой заявка будет выставлена на биржу. При этом заявки marketLoss, marketProfit будут выставлены по рыночной цене, а заявки limitLoss, limitProfit - по цене, указанной в заявке.
+    string currency = 17; // Валюта, например, RUB
+    Exchange exchange = 18; // Биржа, например, MOEX
+    string board = 19; // Борда биржи, например TQOB
+    uint64 orderId = 20; // id заявки
+    Date gtdDate = 21; // Только для заявок с типом GTD: дата до которой включительно нужно исполнить заявку. Если не исполнить - на отменяется
+    uint32 portfolioId = 22; // Не заполняется
+    string requestId = 23; // Сквозной идентификатор запроса, по факту не заполняется
+}

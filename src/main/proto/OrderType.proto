@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+enum OrderType {
+  NO_TYPE = 0; //null
+  MARKET = 1; //market - рыночная
+  LIMIT = 2; //limit — лимитная
+  LIMIT_LOSS = 3; //limitSL — стоп-лосс лимитная
+  MARKET_LOSS = 4; //marketSL — стоп-лосс рыночная
+  LIMIT_PROFIT = 5; //limitTP — тейк-профит лимитная
+  MARKET_PROFIT = 6; //marketTP — тейк-профит рыночная
+  GTD = 7; //GTD — good-till-date
+  GTC = 8;
+}

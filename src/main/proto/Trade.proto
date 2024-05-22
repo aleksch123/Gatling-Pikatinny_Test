@@ -1,0 +1,26 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+import "Decimal.proto";
+import "Date.proto";
+import "Time.proto";
+import "Side.proto";
+
+message Trade {
+  Date date = 1;
+  Time time = 2;
+  string clientId = 3;
+  string ticker = 4;
+  Side side = 5;
+  Decimal price = 6;
+  Decimal qty = 7;
+  Date settlementdate = 8;
+  string orderid = 9;
+  string market = 10;
+  Decimal brokerfee = 11;
+  Decimal marketfee = 12;
+  string marketboard = 13;
+  string currency = 14;
+  string execId = 15;
+}

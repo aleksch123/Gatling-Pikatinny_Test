@@ -1,0 +1,10 @@
+{
+  "simulation": "ru.domrf.dominvest.scenario.Invest",
+  "simulationId": "invest-20240521115336169",
+  "start": 1716292417813,
+  "description": "1",
+  "scenarios": ["Default Load Test"],
+  "assertions": [
+
+  ]
+}

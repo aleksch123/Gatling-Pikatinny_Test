@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+import "Decimal.proto";
+
+message Commission {
+  Decimal amount = 1;
+  string currency = 2;
+  string formattedAmount = 3; //String.format(new Locale("ru"), "%1$,.2f", value)  for example "1 000 000,01"
+}

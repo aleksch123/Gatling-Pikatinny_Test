@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+enum OrderFailReason {
+  NO_FAIL = 0;
+  DECLINED_BY_LIMITS = 1;
+  DECLINED_BY_FIXGATE = 2;
+  CANCELED_BY_MARKET = 3;
+  CANCELED_BY_BROKER = 4;
+  CANCELED_BY_CLIENT = 5;
+}

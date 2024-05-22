@@ -1,0 +1,38 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+import "Decimal.proto";
+import "Date.proto";
+import "SecurityType.proto";
+import "Exchange.proto";
+
+message Position {
+  Date date = 1;
+  string clientId = 2; //идентификатор клиента
+  string securityId = 3; //id бумаги как <id бумаги в бэк-офисе>.<биржа>.<борда>
+  SecurityType securityType = 4; //тип инструмента
+  string ticker = 5; //тикер на бирже
+  Exchange exchange = 6; //биржа
+  string board = 7; //классификатор борды
+  string currency = 8; //валюта инструмента
+  Decimal qtyT0 = 9; //плановая позиция в T0
+  Decimal qtyT1 = 10; //плановая позиция в T+1
+  Decimal qtyT2 = 11; //плановая позиция в T+2
+  Decimal qtyTn = 12; //плановая позиция в Tn
+  Decimal qtyTotal = 13; //total позиция как сумма T0 + T+1 + T+2 + Tn
+  Decimal blocked = 14; //total сумма заблокированных лимитов по позиции
+  Decimal faceValue = 15; // текущий номинал
+  Decimal accrInterest = 16; //нкд
+  Decimal wap = 17; //средневзвеш. цена
+  Decimal closePrice = 18; //цена закрытия
+  Decimal currentPrice = 19; //текущая цена
+  Decimal realPnL = 20; // реализованный profit&loss
+  Decimal unRealPnL = 21; //нереализованный profit&loss за все время
+  Decimal dailyPnL = 22; //нереализованный profit&loss за день
+  Decimal monthlyPnL = 23; //нереализованный profit&loss за месяц
+  Decimal weeklyPnL = 24; //нереализованныйprofit&loss за неделю
+  Decimal quarterlyPnL = 25; //нереализованный profit%loss за квартал
+  Decimal yearlyPnL = 26; //нереализованный profit&loss с начала года
+  string pactId = 27;
+}

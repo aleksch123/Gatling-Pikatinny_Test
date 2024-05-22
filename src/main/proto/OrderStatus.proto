@@ -1,0 +1,18 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+enum OrderStatus {
+  NO_STATUS = 0; //null
+  NEW = 1; //new
+  NEW_LIMITS_APPROVED = 2; //limits_approved
+  PLACED = 3; //placed
+  PLACED_IN_PROGRESS = 4; //placed_updated
+  PLACED_PART_FILLED = 5; //part_filled
+  PLACED_FILLED = 6; //filled
+  PENDING_DECLINE = 7; //wasn't placed on market, pending decline
+  DECLINED = 8; //wasnt placed on market, declined
+  PENDING_CANCEL = 9; //canceled
+  CANCELED = 10; //was placed on market, canceled
+  UNSOLICITED_CANCEL = 11;// canceled unsolicitedly due to session end, COD, etc. For gate internal use
+}

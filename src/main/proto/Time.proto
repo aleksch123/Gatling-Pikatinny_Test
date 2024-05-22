@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+message Time
+{
+  uint32 hh = 1;
+  uint32 mm = 2;
+  uint32 ss = 3;
+  uint32 ns = 4;
+}

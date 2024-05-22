@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package dominvest.backend.core.model;
+
+
+enum SecurityType {
+  NONE = 0;
+  STOCK = 1;
+  BOND = 2;
+  MBS = 3;
+  FUND = 4;
+  INDEX = 5;
+  PRODUCT = 6;
+  CURRENCY = 7;
+}

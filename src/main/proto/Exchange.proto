@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+enum Exchange {
+  NO_EXCH = 0;
+  MOEX = 1;
+  SPB = 2;
+  OTC = 3;
+  DOM_RF = 4;
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package dominvest.backend.core.model;
+
+enum ErrorType {
+  NO_ERROR = 0;
+  CLIENT_NOT_FOUND = 1; //
+  GET_ACCOUNTS_ERROR_FROM_NA5 = 2;
+  GET_ACCOUNTS_ERROR_CALL_NA5 = 3;
+  AGREEMENT_NOT_FOUND = 4; //
+  MORE_THAN_1_AGREEMENTS_FOUND = 5; //
+  CREATE_PAYMENT_ERROR_FROM_NA5 = 6; //
+  CREATE_PAYMENT_ERROR_CALL_NA5 = 7; //
+  CALCULATE_COMMISSION_ERROR = 8;
+  SECURITY_NOT_FOUND = 9;
+  GET_POSITION_ERROR_FROM_NA5 = 10;
+  GET_POSITION_ERROR_CALL_NA5 = 11;
+  BOND_NOT_FOUND = 12;
+  NKD_NOT_FOUND = 13;
+  ERROR_SECURITIES_SEARCH = 14;
+  INVALID_CONFIRMATION_CODE = 15;
+  ERROR = 16; //
+}
+
+message ErrorCode {
+  ErrorType errorType = 1;
+  string description = 2;
+}

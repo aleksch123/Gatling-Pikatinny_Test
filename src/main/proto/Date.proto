@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package dominvest.backend.core.model;
+
+message Date {
+  uint32 yyyy = 1;
+  uint32 mm = 2;
+  uint32 dd = 3;
+}
