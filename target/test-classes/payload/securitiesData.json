@@ -1,8 +1,0 @@
-{
- "securities" : [
-       {
-          "securityId" : "${securityId}",
-           "ticker" : "${ticker}"
-       }
-        ]
-    }
