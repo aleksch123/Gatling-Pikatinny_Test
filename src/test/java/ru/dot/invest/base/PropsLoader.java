@@ -1,4 +1,4 @@
-package ru.domrf.dominvest.base;
+package ru.dot.invest.base;
 
 import java.io.File;
 import java.io.FileReader;

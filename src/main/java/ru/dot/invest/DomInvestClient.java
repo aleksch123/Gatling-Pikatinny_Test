@@ -1,4 +1,4 @@
-package ru.domrf.dominvest;
+package ru.dot.invest;
 
 
 import dominvest.backend.core.model.*;
@@ -30,7 +30,7 @@ public class DomInvestClient {
 
 
         ManagedChannel channel = ManagedChannelBuilder
-                .forTarget("portfolio-envoy-grpc.test.invest.domrfbank.ru:443")
+                .forTarget("test:443")
                 .build();
 
 
@@ -51,7 +51,7 @@ public class DomInvestClient {
                 .build();
 
         TransactionCreateResponse response = stub.withWaitForReady().withInterceptors(MetadataUtils.newAttachHeadersInterceptor(header)).createOperation(request);
-       // TransactionCreateResponse response = stub.createOperation(request);
+
 
 
 

@@ -1,13 +1,9 @@
-package ru.domrf.dominvest.base;
+package ru.dot.invest.base;
 
-import io.gatling.javaapi.core.ChainBuilder;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 
 import java.util.Properties;
-import java.util.concurrent.ThreadLocalRandom;
 
-import static io.gatling.javaapi.core.CoreDsl.*;
-import static io.gatling.javaapi.http.HttpDsl.flushCookieJar;
 import static io.gatling.javaapi.http.HttpDsl.http;
 
 public class BaseTest {

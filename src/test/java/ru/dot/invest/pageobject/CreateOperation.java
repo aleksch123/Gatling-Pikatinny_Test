@@ -1,10 +1,10 @@
-package ru.domrf.dominvest.pageobject;
+package ru.dot.invest.pageobject;
 
 
 import io.gatling.javaapi.core.ChainBuilder;
 
 
-import ru.domrf.dominvest.DomInvestClient;
+import ru.dot.invest.DomInvestClient;
 
 
 
